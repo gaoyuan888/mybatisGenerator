@@ -52,7 +52,7 @@
 		
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://192.168.115.246/nethp_scale?characterEncoding=utf-8" userId="${jdbc.username}"
+			connectionURL="${jdbc.url}" userId="${jdbc.username}"
 			password="${jdbc.password}">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
