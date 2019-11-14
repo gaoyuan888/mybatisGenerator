@@ -139,6 +139,10 @@
 		<table schema="" tableName="${jdbc.table.items}" enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
 			<columnOverride column="status" jdbcType="TINYINT" javaType="Integer"  />
 			<columnOverride column="ticket_type"  jdbcType="TINYINT" javaType="Integer"  />
+			<columnOverride column="chosen"  jdbcType="TINYINT" javaType="Integer"  />
+			<columnOverride column="idx"  jdbcType="TINYINT" javaType="Integer"  />
+			<columnOverride column="current_num"  jdbcType="TINYINT" javaType="Integer"  />
+			<columnOverride column="eval_rule"  jdbcType="TINYINT" javaType="Integer"  />
 		</table>
 
 	</context>
