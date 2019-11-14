@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ssm.core.dao.ScaleFactorResultDao">
+  <resultMap id="BaseResultMap" type="cn.ssm.core.bean.ScaleFactorResult">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="scale_id" jdbcType="BIGINT" property="scaleId" />
+    <result column="ticket_id" jdbcType="BIGINT" property="ticketId" />
+    <result column="factor_id" jdbcType="BIGINT" property="factorId" />
+    <result column="scale_answer" jdbcType="BIGINT" property="scaleAnswer" />
+    <result column="idx" jdbcType="TINYINT" property="idx" />
+    <result column="factor_attr_desc" jdbcType="VARCHAR" property="factorAttrDesc" />
+    <result column="factor_attr_detail" jdbcType="VARCHAR" property="factorAttrDetail" />
+    <result column="score" jdbcType="DECIMAL" property="score" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="res_detail" jdbcType="VARCHAR" property="resDetail" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <if test="fields == null">
+      id, scale_id, ticket_id, factor_id, scale_answer, idx, factor_attr_desc, factor_attr_detail, 
+      score, grade, res_detail, created, modified, status
+    </if>
+    <if test="fields != null">
+      ${fields}
+    </if>
+  </sql>
+
+  <select id="selectByIds" resultMap="DramaImageResultMap">
+    select * from drama where drama_id in
+    <foreach collection="dramaIds" item="dramaId" open="(" close=")" separator=",">
+      #{dramaId}
+    </foreach>
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    id,scale_id,ticket_id,factor_id,scale_answer,idx,factor_attr_desc,factor_attr_detail,score,grade,res_detail,created,modified,status
+    from scale_factor_result
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from scale_factor_result
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.ssm.core.bean.ScaleFactorResult">
+    insert into scale_factor_result (id, scale_id, ticket_id, 
+      factor_id, scale_answer, idx, 
+      factor_attr_desc, factor_attr_detail, score, 
+      grade, res_detail, created, 
+      modified, status)
+    values (#{id,jdbcType=BIGINT}, #{scaleId,jdbcType=BIGINT}, #{ticketId,jdbcType=BIGINT}, 
+      #{factorId,jdbcType=BIGINT}, #{scaleAnswer,jdbcType=BIGINT}, #{idx,jdbcType=TINYINT}, 
+      #{factorAttrDesc,jdbcType=VARCHAR}, #{factorAttrDetail,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL}, 
+      #{grade,jdbcType=INTEGER}, #{resDetail,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{modified,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.ssm.core.bean.ScaleFactorResult">
+    insert into scale_factor_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="scaleId != null">
+        scale_id,
+      </if>
+      <if test="ticketId != null">
+        ticket_id,
+      </if>
+      <if test="factorId != null">
+        factor_id,
+      </if>
+      <if test="scaleAnswer != null">
+        scale_answer,
+      </if>
+      <if test="idx != null">
+        idx,
+      </if>
+      <if test="factorAttrDesc != null">
+        factor_attr_desc,
+      </if>
+      <if test="factorAttrDetail != null">
+        factor_attr_detail,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="resDetail != null">
+        res_detail,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="modified != null">
+        modified,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="scaleId != null">
+        #{scaleId,jdbcType=BIGINT},
+      </if>
+      <if test="ticketId != null">
+        #{ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="factorId != null">
+        #{factorId,jdbcType=BIGINT},
+      </if>
+      <if test="scaleAnswer != null">
+        #{scaleAnswer,jdbcType=BIGINT},
+      </if>
+      <if test="idx != null">
+        #{idx,jdbcType=TINYINT},
+      </if>
+      <if test="factorAttrDesc != null">
+        #{factorAttrDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="factorAttrDetail != null">
+        #{factorAttrDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="resDetail != null">
+        #{resDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ssm.core.bean.ScaleFactorResult">
+    update scale_factor_result
+    <set>
+      <if test="scaleId != null">
+        scale_id = #{scaleId,jdbcType=BIGINT},
+      </if>
+      <if test="ticketId != null">
+        ticket_id = #{ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="factorId != null">
+        factor_id = #{factorId,jdbcType=BIGINT},
+      </if>
+      <if test="scaleAnswer != null">
+        scale_answer = #{scaleAnswer,jdbcType=BIGINT},
+      </if>
+      <if test="idx != null">
+        idx = #{idx,jdbcType=TINYINT},
+      </if>
+      <if test="factorAttrDesc != null">
+        factor_attr_desc = #{factorAttrDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="factorAttrDetail != null">
+        factor_attr_detail = #{factorAttrDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="resDetail != null">
+        res_detail = #{resDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.ssm.core.bean.ScaleFactorResult">
+    update scale_factor_result
+    set scale_id = #{scaleId,jdbcType=BIGINT},
+      ticket_id = #{ticketId,jdbcType=BIGINT},
+      factor_id = #{factorId,jdbcType=BIGINT},
+      scale_answer = #{scaleAnswer,jdbcType=BIGINT},
+      idx = #{idx,jdbcType=TINYINT},
+      factor_attr_desc = #{factorAttrDesc,jdbcType=VARCHAR},
+      factor_attr_detail = #{factorAttrDetail,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DECIMAL},
+      grade = #{grade,jdbcType=INTEGER},
+      res_detail = #{resDetail,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
